@@ -1,10 +1,3 @@
-drop table if exists simptoms;
-create table simptoms (
-    id_simptom int unsigned not null auto_increment,
-    primary key (id_simptom),
-    name varchar(255)
-);
-
 drop table if exists diseases;
 create table diseases (
     id_disease int unsigned not null auto_increment,
@@ -12,14 +5,21 @@ create table diseases (
     name varchar(255)
 );
 
+drop table if exists simptoms;
+create table simptoms (
+    id_simptom int unsigned not null auto_increment,
+    primary key (id_simptom),
+    name varchar(255)
+);
+
 drop table if exists rules;
 create table rules (
     id_rule int unsigned not null auto_increment,
     primary key (id_rule),
-    id_simptom int unsigned not null,
-    foreign key (id_simptom) references simptoms(id_simptom),
     id_disease int unsigned not null,
     foreign key (id_disease) references diseases(id_disease),
+    id_simptom int unsigned not null,
+    foreign key (id_simptom) references simptoms(id_simptom),
     cf int unsigned not null
 );
 
