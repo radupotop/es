@@ -9,8 +9,8 @@ app = web.application(urls, globals())
 
 class index:
     def GET(self):
-        tpl = web.template.frender('tpl.html')
-        return tpl('world', 'page')
+        tpl = web.template.render('tpl/')
+        return tpl.form('world', 'page')
 
 
 
