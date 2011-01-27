@@ -26,3 +26,8 @@ def join():
 #~ 
 #~ for row in x:
     #~ print row
+
+
+def get_symptoms_list():
+    result = db.select('symptoms')
+    return result.list()
