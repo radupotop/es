@@ -28,7 +28,13 @@ class index:
             for rule in rules:
                 diseases[rule.id_disease] += rule.cf
         
-        return diseases
+        max_cf = max(diseases.values())
+        for k,v in diseases.items():
+            if v == max_cf:
+                winner = k
+                break
+        
+        return db.get_disease_name(k), diseases
 
 
 
