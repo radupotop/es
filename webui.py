@@ -22,12 +22,11 @@ class index:
     def POST(self):
         i = web.input()
         symptoms = i.values()
-        
-        diseases = dict()
+        diseases = db.get_diseases()
         for symp in symptoms:
             rules = db.get_rules(symp)
             for rule in rules:
-                diseases[rule.id_disease] = rule.cf
+                diseases[rule.id_disease] += rule.cf
         
         return diseases
 
