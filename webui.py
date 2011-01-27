@@ -17,7 +17,7 @@ class index:
         symp = db.get_symptoms_list()
         es_form = DynamicForm()
         for row in symp:
-            es_form.add_input(web.form.Checkbox(web.utils.utf8(row.name), value=row.id_symptom))
+            es_form.add_input(web.form.Checkbox(row.name.encode('utf-8'), value=row.id_symptom))
         return es_form
 
 
