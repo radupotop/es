@@ -2,18 +2,6 @@ import web
 
 db = web.database(dbn='mysql', db='es', user='root')
 
-def select(table):
-    result = db.select(table)
-    return result.list()
-
-
-#~ symptoms = select('symptoms')
-#~ 
-#~ 
-#~ for row in symptoms:
-    #~ print row.name
-
-
 def join():
     results = db.query(
         'select diseases.name as dis, symptoms.name as symp from rules \
@@ -28,6 +16,10 @@ def join():
     #~ print row
 
 
-def get_symptoms_list():
+def get_symptoms():
     result = db.select('symptoms')
+    return result.list()
+
+def get_rules(symp):
+    result = db.select('rules', where='id_symptom=%s' % symp)
     return result.list()

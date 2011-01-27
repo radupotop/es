@@ -2,7 +2,6 @@
 
 import web
 import db
-import core
 
 urls = ('/', 'index')
 app = web.application(urls, globals())
@@ -14,7 +13,7 @@ class index:
         return tpl.form(es_form)
 
     def form(self):
-        symp = db.get_symptoms_list()
+        symp = db.get_symptoms()
         es_form = DynamicForm()
         for row in symp:
             es_form.add_input(web.form.Checkbox(row.name.encode('utf-8'), value=row.id_symptom))
@@ -22,8 +21,15 @@ class index:
         
     def POST(self):
         i = web.input()
-        symp = i.values()
-        return
+        symptoms = i.values()
+        
+        diseases = dict()
+        for symp in symptoms:
+            rules = db.get_rules(symp)
+            for rule in rules:
+                diseases[rule.id_disease] = rule.cf
+        
+        return diseases
 
 
 
