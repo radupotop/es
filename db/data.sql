@@ -28,9 +28,9 @@ insert into rules values(null, 2, 7, 25);
 insert into rules values(null, 2, 9, 8);
 insert into rules values(null, 2, 10, 9);
 
-insert into rules values(null, 3, 1, 15);
-insert into rules values(null, 3, 4, 25);
-insert into rules values(null, 3, 5, 15);
-insert into rules values(null, 3, 6, 15);
-insert into rules values(null, 3, 9, 15);
-insert into rules values(null, 3, 10, 15);
+insert into rules values(null, 3, 1, 13);
+insert into rules values(null, 3, 4, 35);
+insert into rules values(null, 3, 5, 13);
+insert into rules values(null, 3, 6, 13);
+insert into rules values(null, 3, 9, 13);
+insert into rules values(null, 3, 10, 13);
