@@ -19,6 +19,10 @@ class index:
         for row in symp:
             es_form.add_input(web.form.Checkbox(row.name.encode('utf-8'), value=row.id_symptom))
         return es_form
+        
+    def POST(self):
+        i = web.input()
+        return i
 
 
 
