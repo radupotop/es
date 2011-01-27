@@ -22,7 +22,8 @@ class index:
         
     def POST(self):
         i = web.input()
-        return i
+        symp = i.values()
+        return
 
 
 
