@@ -23,6 +23,7 @@ class index:
         i = web.input()
         symptoms = i.values()
         diseases = db.get_diseases()
+        
         for symp in symptoms:
             rules = db.get_rules(symp)
             for rule in rules:
@@ -37,7 +38,7 @@ class index:
         winner_name = db.get_disease_name(winner)
         
         tpl = web.template.render('tpl/')
-        return tpl.result(winner_name, max_cf)
+        return tpl.result(winner_name, max_cf, diseases)
 
 
 
