@@ -34,7 +34,10 @@ class index:
                 winner = k
                 break
         
-        return db.get_disease_name(k), diseases
+        winner_name = db.get_disease_name(winner)
+        
+        tpl = web.template.render('tpl/')
+        return tpl.result(winner_name, max_cf)
 
 
 
