@@ -22,11 +22,3 @@ create table rules (
     foreign key (id_symptom) references symptoms(id_symptom),
     cf int unsigned not null
 );
-
-drop table if exists facts;
-create table facts (
-    id_fact int unsigned not null auto_increment,
-    primary key (id_fact),
-    id_rule int unsigned not null,
-    foreign key (id_rule) references rules(id_rule)
-);
