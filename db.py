@@ -13,7 +13,7 @@ def get_diseases():
     return mk_dict('id_disease', 'name', result)
 
 def get_rules(symp):
-    result = db.select('rules', where='id_symptom=%s' % symp).list()
+    result = db.select('rules', where='id_symptom=%s' % int(symp)).list()
     rules = dict()
     for row in result:
         rules[row.id_disease] = row.cf
