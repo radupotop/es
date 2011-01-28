@@ -10,7 +10,8 @@ class index:
     def GET(self):
         tpl = web.template.render('tpl/')
         es_form = self.form()
-        return tpl.form(es_form)
+        diseases = db.get_diseases_name_list()
+        return tpl.form(es_form, diseases)
 
     def form(self):
         symp = db.get_symptoms()
@@ -22,7 +23,7 @@ class index:
     def POST(self):
         i = web.input()
         symptoms = i.values()
-        diseases = db.get_diseases()
+        diseases = db.get_diseases_cf()
         
         for symp in symptoms:
             rules = db.get_rules(symp)
