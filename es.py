@@ -10,7 +10,7 @@ class index:
     def GET(self):
         tpl = web.template.render('tpl/')
         es_form = self.form()
-        diseases = db.get_diseases_name_list()
+        diseases = db.get_diseases().values()
         return tpl.form(es_form, diseases)
 
     def form(self):
@@ -23,7 +23,7 @@ class index:
     def POST(self):
         i = web.input()
         symptoms = i.values()
-        diseases = db.get_diseases_cf()
+        diseases = db.get_diseases_init_cf()
         
         for symp in symptoms:
             rules = db.get_rules(symp)
@@ -33,10 +33,10 @@ class index:
         max_cf = max(diseases.values())
         for k,v in diseases.items():
             if v == max_cf:
-                winner = k
+                winner_k = k
                 break
         
-        winner_name = db.get_disease_name(winner)
+        winner_name = db.get_diseases()[winner_k]
         
         tpl = web.template.render('tpl/')
         return tpl.result(winner_name, max_cf, diseases)
