@@ -16,8 +16,8 @@ class index:
     def form(self):
         symp = db.get_symptoms()
         es_form = DynamicForm()
-        for row in symp:
-            es_form.add_input(web.form.Checkbox(row.name.encode('utf-8'), value=row.id_symptom))
+        for k,v in symp.items():
+            es_form.add_input(web.form.Checkbox(v, value=k))
         return es_form
         
     def POST(self):
@@ -27,8 +27,8 @@ class index:
         
         for symp in symptoms:
             rules = db.get_rules(symp)
-            for rule in rules:
-                diseases[rule.id_disease] += rule.cf
+            for k,v in rules.items():
+                diseases[k] += v
         
         max_cf = max(diseases.values())
         for k,v in diseases.items():
