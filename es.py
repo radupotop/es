@@ -21,11 +21,11 @@ class index:
         return es_form
         
     def POST(self):
-        symptoms_i = web.input().values()
+        symptoms_iv = web.input().values()
         diseases_cf = db.get_diseases_init_cf()
 
         # Determine CF for each disease
-        for symp in symptoms_i:
+        for symp in symptoms_iv:
             rules = db.get_rules(symp)
             for k,v in rules.items():
                 diseases_cf[k] += v
@@ -36,11 +36,12 @@ class index:
             if v == max_cf:
                 winner_k = k
                 break
-        
         winner_name = db.get_diseases()[winner_k]
         
+        symptoms_ik = web.input().keys()
+        
         tpl = web.template.render('tpl/')
-        return tpl.result(winner_name, max_cf, diseases_cf)
+        return tpl.result(winner_name, max_cf, diseases_cf, symptoms_ik)
 
 
 class DynamicForm(web.form.Form):

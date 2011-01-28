@@ -1,4 +1,4 @@
-$def with (disease, cf, debug)
+$def with (winner_name, max_cf, diseases_cf, symptoms_ik)
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
     "http://www.w3.org/TR/html4/strict.dtd">
 
@@ -17,11 +17,11 @@ $def with (disease, cf, debug)
 
 <h2>Rezultate</h2>
 
-<p id="diag">Diagnosticul este: <span>$disease</span>
-cu o probabilitate de: <span>$cf%</span>.</p>
+<p id="diag">Diagnosticul este: <span>$winner_name</span>
+cu o certitudine de: <span>$max_cf%</span>.</p>
 
 <br>
-<p id="debug">Debug: $debug</p>
+<p id="debug">Debug: $diseases_cf, $symptoms_ik</p>
 
 <a href=".">Înapoi</a>
 
