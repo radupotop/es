@@ -14,24 +14,25 @@ class index:
         return tpl.form(es_form, diseases)
 
     def form(self):
-        symp = db.get_symptoms()
+        symptoms = db.get_symptoms()
         es_form = DynamicForm()
-        for k,v in symp.items():
+        for k,v in symptoms.items():
             es_form.add_input(web.form.Checkbox(v, value=k))
         return es_form
         
     def POST(self):
-        i = web.input()
-        symptoms = i.values()
-        diseases = db.get_diseases_init_cf()
-        
-        for symp in symptoms:
+        symptoms_i = web.input().values()
+        diseases_cf = db.get_diseases_init_cf()
+
+        # Determine CF for each disease
+        for symp in symptoms_i:
             rules = db.get_rules(symp)
             for k,v in rules.items():
-                diseases[k] += v
-        
-        max_cf = max(diseases.values())
-        for k,v in diseases.items():
+                diseases_cf[k] += v
+
+        # Determine winning disease
+        max_cf = max(diseases_cf.values())
+        for k,v in diseases_cf.items():
             if v == max_cf:
                 winner_k = k
                 break
@@ -39,8 +40,7 @@ class index:
         winner_name = db.get_diseases()[winner_k]
         
         tpl = web.template.render('tpl/')
-        return tpl.result(winner_name, max_cf, diseases)
-
+        return tpl.result(winner_name, max_cf, diseases_cf)
 
 
 class DynamicForm(web.form.Form):

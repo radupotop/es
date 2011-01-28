@@ -15,15 +15,15 @@ def get_diseases():
 def get_rules(symp):
     result = db.select('rules', where='id_symptom=%s' % symp).list()
     rules = dict()
-    for rule in result:
-        rules[rule.id_disease] = rule.cf
+    for row in result:
+        rules[row.id_disease] = row.cf
     return rules
 
 def get_diseases_init_cf():
     result = db.select('diseases').list()
     diseases = dict()
-    for dis in result:
-        diseases[dis.id_disease] = 0
+    for row in result:
+        diseases[row.id_disease] = 0
     return diseases
 
 def mk_dict(k, v, result):
