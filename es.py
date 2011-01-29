@@ -1,5 +1,9 @@
 #!/usr/bin/python2
 
+import os, sys
+abspath = os.path.dirname(os.path.realpath(__file__))
+sys.path.append(abspath)
+
 import web
 import db
 
