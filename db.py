@@ -30,5 +30,5 @@ def mk_dict(k, v, result):
     """Make dict() from db result"""
     d = dict()
     for row in result:
-        d[row[k]] = row[v].encode('utf-8')
+        d[row[k]] = row[v]
     return d

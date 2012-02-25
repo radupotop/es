@@ -1,18 +1,19 @@
+drop table if exists rules;
 drop table if exists diseases;
+drop table if exists symptoms;
+
 create table diseases (
     id_disease int unsigned not null auto_increment,
     primary key (id_disease),
     name varchar(255)
 );
 
-drop table if exists symptoms;
 create table symptoms (
     id_symptom int unsigned not null auto_increment,
     primary key (id_symptom),
     name varchar(255)
 );
 
-drop table if exists rules;
 create table rules (
     id_rule int unsigned not null auto_increment,
     primary key (id_rule),
